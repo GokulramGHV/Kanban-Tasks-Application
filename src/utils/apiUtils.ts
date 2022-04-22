@@ -1,3 +1,5 @@
+import { Board } from '../types/apiTypes';
+
 const API_BASE_URL = 'https://capstone-301-task-app.herokuapp.com/api/';
 
 type RequestMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE' | 'PUT';
@@ -70,4 +72,32 @@ export const register = (
     password1,
     password2,
   });
+};
+
+export const listBoards = () => {
+  return request('boards/', 'GET');
+};
+
+export const createBoard = (payload: Board) => {
+  return request('boards/', 'POST', payload);
+};
+
+export const editBoard = (payload: Board, boardID: number) => {
+  return request(`boards/${boardID}/`, 'PATCH', payload);
+};
+
+export const getBoard = (boardID: number) => {
+  return request(`boards/${boardID}/`, 'GET');
+};
+
+export const deleteBoard = (boardID: number) => {
+  return request(`boards/${boardID}/`, 'DELETE');
+};
+
+export const listTasks = (boardID: number) => {
+  return request(`boards/${boardID}/tasks/`, 'GET');
+};
+
+export const listStatus = () => {
+  return request(`status/`, 'GET');
 };
