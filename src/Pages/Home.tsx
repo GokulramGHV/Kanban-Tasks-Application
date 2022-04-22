@@ -1,5 +1,14 @@
 import React from 'react';
+import Navbar from '../Components/Navbar';
+import NavContainer from '../Components/NavContainer';
+import Sidenav from '../Components/Sidenav';
 
 export default function Home() {
-  return <div className='text-2xl'>Hello, This is the home page!</div>;
+  return (
+    <div>
+      <NavContainer>
+        <div></div>
+      </NavContainer>
+    </div>
+  );
 }

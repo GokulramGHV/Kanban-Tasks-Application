@@ -4,7 +4,11 @@ module.exports = {
     './node_modules/tw-elements/dist/js/**/*.js',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        montserrat: "'Montserrat', 'sans-serif'",
+      }
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),
