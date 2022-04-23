@@ -156,7 +156,7 @@ export default function TasksView() {
           </div>
         </button>
       </div>
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-3 gap-5 mx-5">
         {statusState.map((stat: Status) => (
           <React.Fragment key={stat.id}>
             <div

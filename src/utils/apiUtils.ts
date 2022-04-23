@@ -56,6 +56,15 @@ export const login = (username: string, password: string) => {
   });
 };
 
+export const registerUser = (payload: {
+  username: string;
+  email: string;
+  password1: string;
+  password2: string;
+}) => {
+  return request('auth/registration/', 'POST', payload);
+};
+
 export const me = () => {
   return request('users/me/', 'GET');
 };
