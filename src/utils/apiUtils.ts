@@ -1,4 +1,4 @@
-import { Board } from '../types/apiTypes';
+import { Board, Status, Task_api } from '../types/apiTypes';
 
 const API_BASE_URL = 'https://capstone-301-task-app.herokuapp.com/api/';
 
@@ -100,4 +100,32 @@ export const listTasks = (boardID: number) => {
 
 export const listStatus = () => {
   return request(`status/`, 'GET');
+};
+
+export const createTask = (payload: Task_api, boardID: number) => {
+  return request(`boards/${boardID}/tasks/`, 'POST', payload);
+};
+
+export const editTask = (
+  payload: Task_api,
+  boardID: number,
+  taskID: number
+) => {
+  return request(`boards/${boardID}/tasks/${taskID}/`, 'PATCH', payload);
+};
+
+export const deleteTask = (boardID: number, taskID: number) => {
+  return request(`boards/${boardID}/tasks/${taskID}`, 'DELETE');
+};
+
+export const createStage = (payload: Status) => {
+  return request('status/', 'POST', payload);
+};
+
+export const editStage = (payload: Status, stageID: number) => {
+  return request(`status/${stageID}/`, 'PATCH', payload);
+};
+
+export const deleteStage = (stageID: number) => {
+  return request(`status/${stageID}/`, 'DELETE');
 };

@@ -1,13 +1,18 @@
 // import { navigate } from 'raviger';
 import React, { useState } from 'react';
-// import { Navigate } from 'react-router-dom';
-import { Board } from '../types/apiTypes';
-import { createBoard } from '../utils/apiUtils';
+import { Status, Task_api } from '../types/apiTypes';
+import { createTask } from '../utils/apiUtils';
 
-export default function CreateBoard() {
-  const [board, setBoard] = useState<Board>({
+export default function CreateTask(props: {
+  boardID: number;
+  statuses: Status[];
+}) {
+  const [taskState, setTaskState] = useState<Task_api>({
     title: '',
     description: '',
+    status: 0,
+    due_date: '',
+    board: props.boardID,
   });
 
   // const [errors, setErrors] = useState<Errors<Form>>({});
@@ -24,8 +29,9 @@ export default function CreateBoard() {
     // if (Object.keys(validationErrors).length === 0) {
 
     try {
-      const data = await createBoard(board);
-      alert('Board created succesfully!');
+      // eslint-disable-next-line
+      const data = await createTask(taskState, props.boardID);
+      alert('Task created succesfully!');
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -48,9 +54,9 @@ export default function CreateBoard() {
             type="text"
             name="title"
             id="title"
-            value={board.title}
+            value={taskState.title}
             onChange={(e) => {
-              setBoard({ ...board, title: e.target.value });
+              setTaskState({ ...taskState, title: e.target.value });
             }}
             className="flex-1 input-elem w-full"
           />
@@ -68,9 +74,9 @@ export default function CreateBoard() {
             type="text"
             name="description"
             id="description"
-            value={board.description}
+            value={taskState.description}
             onChange={(e) => {
-              setBoard({ ...board, description: e.target.value });
+              setTaskState({ ...taskState, description: e.target.value });
             }}
             className="input-elem w-full"
           />
@@ -79,13 +85,60 @@ export default function CreateBoard() {
           )} */}
         </div>
 
+        <div className="mb-4">
+          <label
+            htmlFor="due_date"
+            // className={`${errors.description ? 'text-red-500' : ''}`}
+          >
+            Due Date
+          </label>
+          <input
+            type="date"
+            name="due_date"
+            id="due_date"
+            value={taskState.due_date}
+            onChange={(e) => {
+              setTaskState({ ...taskState, due_date: e.target.value });
+            }}
+            className="input-elem w-full"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label
+            htmlFor="status"
+            // className={`${errors.description ? 'text-red-500' : ''}`}
+          >
+            Stage
+          </label>
+
+          <select
+            name="status"
+            id="status"
+            className="input-elem w-full"
+            onChange={(e) => {
+              setTaskState({ ...taskState, status: Number(e.target.value) });
+            }}
+          >
+            <option value="" hidden>
+              {' '}
+              --- Select an option ---{' '}
+            </option>
+            {props.statuses.map((stat) => (
+              <option value={stat.id} key={stat.id}>
+                {stat.title}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <button
           className="btn w-full mt-2"
           type="submit"
           data-mdb-ripple="true"
           data-mdb-ripple-color="light"
         >
-          Add Board
+          Add Task
         </button>
       </form>
     </div>

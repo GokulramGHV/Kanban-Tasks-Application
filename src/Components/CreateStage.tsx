@@ -1,11 +1,11 @@
 // import { navigate } from 'raviger';
 import React, { useState } from 'react';
 // import { Navigate } from 'react-router-dom';
-import { Board } from '../types/apiTypes';
-import { createBoard } from '../utils/apiUtils';
+import { Board, Status } from '../types/apiTypes';
+import { createStage } from '../utils/apiUtils';
 
-export default function CreateBoard() {
-  const [board, setBoard] = useState<Board>({
+export default function CreateStage() {
+  const [stage, setStage] = useState<Status>({
     title: '',
     description: '',
   });
@@ -24,8 +24,8 @@ export default function CreateBoard() {
     // if (Object.keys(validationErrors).length === 0) {
 
     try {
-      const data = await createBoard(board);
-      alert('Board created succesfully!');
+      const data = await createStage(stage);
+      alert('Stage created succesfully!');
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -48,9 +48,9 @@ export default function CreateBoard() {
             type="text"
             name="title"
             id="title"
-            value={board.title}
+            value={stage.title}
             onChange={(e) => {
-              setBoard({ ...board, title: e.target.value });
+              setStage({ ...stage, title: e.target.value });
             }}
             className="flex-1 input-elem w-full"
           />
@@ -68,9 +68,9 @@ export default function CreateBoard() {
             type="text"
             name="description"
             id="description"
-            value={board.description}
+            value={stage.description}
             onChange={(e) => {
-              setBoard({ ...board, description: e.target.value });
+              setStage({ ...stage, description: e.target.value });
             }}
             className="input-elem w-full"
           />
@@ -85,7 +85,7 @@ export default function CreateBoard() {
           data-mdb-ripple="true"
           data-mdb-ripple-color="light"
         >
-          Add Board
+          Add Stage
         </button>
       </form>
     </div>

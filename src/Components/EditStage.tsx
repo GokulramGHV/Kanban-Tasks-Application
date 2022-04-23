@@ -1,21 +1,24 @@
 // import { navigate } from 'raviger';
 import React, { useState } from 'react';
-// import { Navigate } from 'react-router-dom';
-import { Board } from '../types/apiTypes';
-import { createBoard } from '../utils/apiUtils';
+import { Status } from '../types/apiTypes';
+import { editStage } from '../utils/apiUtils';
 
-export default function CreateBoard() {
-  const [board, setBoard] = useState<Board>({
-    title: '',
-    description: '',
+export default function EditStage(props: {
+  stageID: number;
+  stageTitle: string;
+  stageDesc: string;
+}) {
+  const [stage, setStage] = useState<Status>({
+    title: props.stageTitle,
+    description: props.stageDesc,
   });
 
   // const [errors, setErrors] = useState<Errors<Form>>({});
 
-  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = event.target;
-  //   setBoard({ ...board, [name]: value });
-  // };
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setStage({ ...stage, [name]: value });
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -24,8 +27,8 @@ export default function CreateBoard() {
     // if (Object.keys(validationErrors).length === 0) {
 
     try {
-      const data = await createBoard(board);
-      alert('Board created succesfully!');
+      const data = await editStage(stage, props.stageID);
+      alert('Stage edited succesfully!');
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -33,6 +36,10 @@ export default function CreateBoard() {
     }
     // }
   };
+
+  // useEffect(() => {
+  //   fetchStage(setStage, props.boardID);
+  // }, [props.boardID]);
 
   return (
     <div className="w-full">
@@ -48,9 +55,9 @@ export default function CreateBoard() {
             type="text"
             name="title"
             id="title"
-            value={board.title}
+            value={stage.title}
             onChange={(e) => {
-              setBoard({ ...board, title: e.target.value });
+              setStage({ ...stage, title: e.target.value });
             }}
             className="flex-1 input-elem w-full"
           />
@@ -68,9 +75,9 @@ export default function CreateBoard() {
             type="text"
             name="description"
             id="description"
-            value={board.description}
+            value={stage.description}
             onChange={(e) => {
-              setBoard({ ...board, description: e.target.value });
+              setStage({ ...stage, description: e.target.value });
             }}
             className="input-elem w-full"
           />
@@ -85,7 +92,7 @@ export default function CreateBoard() {
           data-mdb-ripple="true"
           data-mdb-ripple-color="light"
         >
-          Add Board
+          Edit Stage
         </button>
       </form>
     </div>

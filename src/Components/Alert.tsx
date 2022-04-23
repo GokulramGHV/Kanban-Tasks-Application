@@ -1,4 +1,4 @@
-export default function Modal(props: {
+export default function Alert(props: {
   alertBody: string;
   alertBgColor: string;
   alertTextColor: string;
