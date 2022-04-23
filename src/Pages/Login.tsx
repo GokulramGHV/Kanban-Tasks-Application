@@ -5,14 +5,16 @@ import { login, me } from '../utils/apiUtils';
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  
   const navigate = useNavigate();
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       const data = await login(username, password);
       localStorage.setItem('token', data.token);
-      // window.location.reload();
-      navigate('/boards');
+      navigate('/');
+      window.location.reload();
+
       console.log(data);
     } catch (error: any) {
       // setErrors(error.non_field_errors);

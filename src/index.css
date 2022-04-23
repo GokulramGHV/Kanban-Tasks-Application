@@ -27,7 +27,7 @@ code {
 }
 
 .input-elem {
-  @apply form-control block px-4 py-2 text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded smooth-effect focus:text-gray-700 focus:bg-white focus:border-indigo-500 focus:outline-none;
+  @apply form-control block px-4 py-2 text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded smooth-effect focus:text-gray-700 focus:bg-white focus:border-indigo-500 focus:outline-none;
 }
 
 .btn {

@@ -1,6 +1,26 @@
+import { useEffect, useState } from 'react';
 import 'tw-elements';
+import { me } from '../utils/apiUtils';
+
+const getName = async (
+  setUsername: React.Dispatch<React.SetStateAction<string>>
+) => {
+  try {
+    const data = await me();
+    setUsername(data.username);
+  } catch (error: any) {
+    // setErrors(error.non_field_errors);
+    console.log(error);
+  }
+};
 
 export default function Navbar() {
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    getName(setUsername);
+  }, []);
+
   return (
     <nav className="fixed-top w-full flex flex-wrap items-center justify-between py-3 bg-slate-800 text-gray-200 shadow-lg navbar navbar-expand-lg navbar-light">
       <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">
@@ -59,14 +79,31 @@ export default function Navbar() {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <img
-                src="https://mdbootstrap.com/img/new/avatars/1.jpg"
-                className="rounded-full"
-                style={{ height: '25px', width: '25px' }}
-                alt=""
-                loading="lazy"
-              />
-              <h4 className="mt-1 ml-2">John Doe</h4>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 mt-1 text-white"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <h4 className="mt-1 ml-2 mr-1">{username}</h4>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 mt-1.5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
             </a>
 
             <ul
@@ -74,12 +111,15 @@ export default function Navbar() {
               aria-labelledby="dropdownMenuButton2"
             >
               <li>
-                <a
+                <button
                   className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                  href="#"
+                  onClick={() => {
+                    localStorage.removeItem('token');
+                    window.location.reload();
+                  }}
                 >
                   Logout
-                </a>
+                </button>
               </li>
             </ul>
           </div>
