@@ -37,7 +37,7 @@ const removeTodo = async (taskID: number) => {
 
 export default function TodoView() {
   const [tasksState, setTasksState] = useState<Task_api[]>([]);
-  const [activeView, setActiveView] = useState(2);
+  const [activeView, setActiveView] = useState(1);
 
   useEffect(() => {
     fetchTodos(setTasksState);

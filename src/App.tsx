@@ -66,7 +66,7 @@ function App() {
             }
           />
         ) : (
-          <Route path="/" element={<Redirect to="/login" />} />
+          <Route path="/to-do" element={<Redirect to="/login" />} />
         )}
 
         {isAuthenticated ? (

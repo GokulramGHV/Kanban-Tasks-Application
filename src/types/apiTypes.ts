@@ -19,6 +19,7 @@ export type Task_api = {
   board?: number;
   priority: string;
   completed?: Boolean;
+  order?: number;
 };
 
 export type Status = {

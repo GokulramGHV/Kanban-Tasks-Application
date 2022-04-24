@@ -4,14 +4,18 @@ import { useEffect, useState } from 'react';
 import 'tw-elements';
 import { listStatus, listTodos, me } from '../utils/apiUtils';
 import { Pagination, Status, Task_api } from '../types/apiTypes';
+import ModalSpinner from '../Components/SpinnerModal';
 
 const fetchStatus = async (
   setStatusState: React.Dispatch<React.SetStateAction<Status[]>>,
-  setActiveTab: React.Dispatch<React.SetStateAction<number>>
+  setActiveTab: React.Dispatch<React.SetStateAction<number>>,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   try {
     const data: Pagination<Status> = await listStatus();
+    setIsLoading(false);
     setStatusState(data.results);
+
     setActiveTab(data.results[0].id as number);
   } catch (error) {
     console.log(error);
@@ -26,11 +30,14 @@ const fetchTasks = async (
       pending: number;
       total: number;
     }>
-  >
+  >,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   try {
     const data: Pagination<Task_api> = await listTodos();
+    setIsLoading(false);
     setTasksState(data.results);
+
     let totalCount = data.results.length;
     let comp = 0;
     let incomp = 0;
@@ -45,10 +52,12 @@ const fetchTasks = async (
 };
 
 const getName = async (
-  setUsername: React.Dispatch<React.SetStateAction<string>>
+  setUsername: React.Dispatch<React.SetStateAction<string>>,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   try {
     const data = await me();
+    setIsLoading(false);
     setUsername(data.username);
   } catch (error: any) {
     // setErrors(error.non_field_errors);
@@ -63,11 +72,12 @@ export default function Home() {
   const [statusState, setStatusState] = useState<Status[]>([]);
   const [tasksState, setTasksState] = useState<Task_api[]>([]);
   const [activeTab, setActiveTab] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getName(setUsername);
-    fetchStatus(setStatusState, setActiveTab);
-    fetchTasks(setTasksState, setCount);
+    getName(setUsername, setIsLoading);
+    fetchStatus(setStatusState, setActiveTab, setIsLoading);
+    fetchTasks(setTasksState, setCount, setIsLoading);
   }, []);
 
   return (
@@ -174,6 +184,8 @@ export default function Home() {
             ))}
         </div>
       </div>
+
+      {isLoading && <ModalSpinner open={true} />}
     </div>
   );
 }
