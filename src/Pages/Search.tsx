@@ -19,6 +19,11 @@ export default function SearchView() {
     <div className="p-3">
       <h1 className="m-7 text-3xl font-bold">Search Results</h1>
       <div className="grid grid-cols-1 gap-4 mt-5 mx-7">
+        {tasksState.filter((tsk) =>
+          tsk.title.toLowerCase().includes(String(searchTerm))
+        ).length === 0 && (
+          <h5 className="text-xl text-gray-700">No results found!</h5>
+        )}
         {tasksState
           .filter((tsk) => tsk.title.toLowerCase().includes(String(searchTerm)))
           .map((task) => (

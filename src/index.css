@@ -37,3 +37,9 @@ code {
 .side-nav-link {
   @apply mx-2 mb-4 flex items-center px-5 text-lg font-medium py-4 h-12 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:text-white hover:bg-indigo-600 hover:shadow-xl transition duration-300 ease-in-out;
 }
+
+.overflow-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
