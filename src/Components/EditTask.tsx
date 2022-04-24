@@ -14,6 +14,7 @@ export default function EditTask(props: {
     due_date: props.task.due_date,
     board: props.task.board,
     priority: props.task.priority,
+    order: props.task.order,
   });
 
   // const [errors, setErrors] = useState<Errors<Form>>({});
@@ -169,6 +170,25 @@ export default function EditTask(props: {
               Low
             </option>
           </select>
+        </div>
+
+        <div className="mb-4">
+          <label
+            htmlFor="order"
+            // className={`${errors.description ? 'text-red-500' : ''}`}
+          >
+            Index (in Stage)
+          </label>
+          <input
+            type="number"
+            name="order"
+            id="order"
+            value={taskState.order as number}
+            onChange={(e) => {
+              setTaskState({ ...taskState, order: Number(e.target.value) });
+            }}
+            className="input-elem w-full"
+          />
         </div>
 
         <button

@@ -165,6 +165,25 @@ export default function CreateTask(props: {
           </select>
         </div>
 
+        <div className="mb-4">
+          <label
+            htmlFor="order"
+            // className={`${errors.description ? 'text-red-500' : ''}`}
+          >
+            Index (in Stage)
+          </label>
+          <input
+            type="number"
+            name="order"
+            id="order"
+            value={taskState.order}
+            onChange={(e) => {
+              setTaskState({ ...taskState, order: Number(e.target.value) });
+            }}
+            className="input-elem w-full"
+          />
+        </div>
+
         <button
           className="btn w-full mt-2"
           type="submit"

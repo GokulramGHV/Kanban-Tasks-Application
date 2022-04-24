@@ -83,7 +83,7 @@ export default function BoardsView() {
         {boardsState.map((board) => (
           <React.Fragment key={board.id}>
             <div
-              className="z-0 bg-white drop-shadow-md rounded-xl py-4 px-6 "
+              className="flex flex-col z-0 bg-white drop-shadow-md rounded-xl py-4 px-6 "
               // key={board.id}
             >
               <div className="flex">
@@ -151,7 +151,7 @@ export default function BoardsView() {
               </div>
 
               <hr className="mt-3" />
-              <div className="mt-3" aria-label="board description">
+              <div className="mt-3 flex-grow" aria-label="board description">
                 <p>{board.description}</p>
               </div>
               <hr className="my-3" />

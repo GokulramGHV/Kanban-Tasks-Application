@@ -221,7 +221,8 @@ export default function TasksView() {
               <Droppable droppableId={`${stat.id}`}>
                 {(provided) => (
                   <div
-                    className="bg-slate-100 border-2 border-gray-300 shadow-lg rounded-xl py-4 px-6" // u might wanna change this
+                    className="bg-slate-100 border-2 border-gray-300 shadow-lg rounded-xl py-4 px-6"
+                    style={{ minHeight: '72vh' }}
                     key={stat.id}
                     ref={provided.innerRef}
                     {...provided.droppableProps}

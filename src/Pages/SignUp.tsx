@@ -41,7 +41,7 @@ export default function SignUp() {
 
         <div className="mt-8">
           <label htmlFor="name" className="font-semibold">
-            Name
+            Username
           </label>
           <input
             type="text"

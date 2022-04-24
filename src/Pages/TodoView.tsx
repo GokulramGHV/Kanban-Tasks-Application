@@ -136,8 +136,8 @@ export default function TodoView() {
                 // className="bg-white shadow-md rounded-lg px-4 py-3 mt-2 mb-4"
                 className={
                   task.completed
-                    ? 'bg-gray-200 rounded-lg px-4 py-3 mt-2 mb-4'
-                    : 'bg-white shadow-md rounded-lg px-4 py-3 mt-2 mb-4'
+                    ? 'bg-gray-200 rounded-lg px-4 py-3 mt-2 mb-4 flex flex-col'
+                    : 'bg-white shadow-md rounded-lg px-4 py-3 mt-2 mb-4 flex flex-col'
                 }
                 key={task.id}
               >
@@ -185,7 +185,7 @@ export default function TodoView() {
                   </div>
                 </div>
 
-                <p className="mt-2">
+                <div className="mt-2 flex-grow">
                   <span
                     className={
                       task.completed ? 'line-through text-gray-500' : ''
@@ -193,7 +193,7 @@ export default function TodoView() {
                   >
                     {task.description}
                   </span>
-                </p>
+                </div>
                 <hr className="my-2" />
                 <div className="flow-root text-sm mt-2">
                   <span className="float-left">
