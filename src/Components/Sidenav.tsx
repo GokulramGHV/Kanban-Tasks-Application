@@ -1,20 +1,14 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useMatch } from 'react-router-dom';
 import 'tw-elements';
+import CustomLink from './CustomLink';
 
 export default function Sidenav() {
+  // const match = useMatch();
   return (
     <div className="w-60 min-h-screen shadow-lg bg-slate-700 px-1 fixed">
-      <ul className="relative">
+      <ul className="relative mt-10">
         <li className="relative">
-          <NavLink
-            className={(isActive) => {
-              if (isActive) return 'mt-10 side-nav-link';
-              else return 'side-nav-link';
-            }}
-            to="/"
-            data-mdb-ripple="true"
-            data-mdb-ripple-color="dark"
-          >
+          <CustomLink to="/">
             <span className="text-base mr-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -33,19 +27,11 @@ export default function Sidenav() {
             </span>
 
             <span>Home</span>
-          </NavLink>
+          </CustomLink>
         </li>
 
         <li className="relative">
-          <NavLink
-            className={(isActive) => {
-              if (isActive) return ' side-nav-link';
-              else return 'side-nav-link';
-            }}
-            to="/boards"
-            data-mdb-ripple="true"
-            data-mdb-ripple-color="dark"
-          >
+          <CustomLink to="/boards">
             <span className="text-base mr-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -64,19 +50,11 @@ export default function Sidenav() {
             </span>
 
             <span>Boards</span>
-          </NavLink>
+          </CustomLink>
         </li>
 
         <li className="relative">
-          <NavLink
-            className={(isActive) => {
-              if (isActive) return ' side-nav-link';
-              else return 'side-nav-link';
-            }}
-            to="/to-do"
-            data-mdb-ripple="true"
-            data-mdb-ripple-color="dark"
-          >
+          <CustomLink to="/to-do">
             <span className="text-base mr-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +73,7 @@ export default function Sidenav() {
             </span>
 
             <span>To-do</span>
-          </NavLink>
+          </CustomLink>
         </li>
       </ul>
     </div>

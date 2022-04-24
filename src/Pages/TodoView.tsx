@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import CreateTodo from '../Components/CreateTodo';
 import EditTask from '../Components/EditTask';
+import EditTodo from '../Components/EditTodo';
 import Modal from '../Components/Modal';
 import { Pagination, Task_api } from '../types/apiTypes';
-import { listTodos, updateTodo } from '../utils/apiUtils';
+import { deleteTodo, listTodos, updateTodo } from '../utils/apiUtils';
 
-const fetchTodos = async (
+export const fetchTodos = async (
   setTasksStateCB: React.Dispatch<React.SetStateAction<Task_api[]>>
 ) => {
   try {
@@ -18,6 +20,16 @@ const fetchTodos = async (
 const UpdateTodos = async (todoID: number, todo: Task_api) => {
   try {
     const data = await updateTodo(todoID, todo);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const removeTodo = async (taskID: number) => {
+  try {
+    // eslint-disable-next-line
+    const data = await deleteTodo(taskID);
+    alert('Deleted Task Successfully!');
   } catch (error) {
     console.log(error);
   }
@@ -64,7 +76,7 @@ export default function TodoView() {
         </button>
       </div>
 
-      <div className="grid grid-cols-3 gap-5 mx-5">
+      <div className="grid lg:grid-cols-3 grid-cols-2 gap-5 mx-5">
         {tasksState.map((task: Task_api) => (
           <React.Fragment key={task.id}>
             <div
@@ -188,10 +200,7 @@ export default function TodoView() {
                   <button
                     className="ml-2"
                     onClick={(_) => {
-                      // removeTask(
-                      //   task.board as number,
-                      //   task.id as number
-                      // );
+                      removeTodo(task.id as number);
                       setTasksState((state) =>
                         state.filter((tsk) => tsk.id !== task.id)
                       );
@@ -215,15 +224,16 @@ export default function TodoView() {
                 </div>
               </div>
             </div>
-            {/* <Modal
-                      modalTitle="Edit Task"
-                      modalId={`TaskEdit${task.id}`}
-                    >
-                      <EditTask task={task} statuses={statusState} />
-                    </Modal> */}
+            <Modal modalTitle="Edit Task" modalId={`TaskEdit${task.id}`}>
+              <EditTodo task={task} />
+            </Modal>
           </React.Fragment>
         ))}
       </div>
+
+      <Modal modalTitle="Create Task" modalId="NewTask">
+        <CreateTodo />
+      </Modal>
     </div>
   );
 }

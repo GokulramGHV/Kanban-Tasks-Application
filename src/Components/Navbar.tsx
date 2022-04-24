@@ -57,13 +57,37 @@ export default function Navbar() {
             Task App
           </a>
           {/* <!-- Left links --> */}
-          <ul className="navbar-nav flex flex-col pl-0 list-style-none mr-auto">
-            <li className="nav-item p-2">
-              <a className="nav-link text-white" href="#">
-                Dashboard
-              </a>
-            </li>
-          </ul>
+
+          <div className="pt-1 relative mx-auto text-gray-600">
+            <form action="/search" method="GET">
+              <input
+                className="border-2 border-gray-300 bg-white w-96 h-9 px-5 pr-16 rounded-lg text-sm focus:border-indigo-500 focus:outline-none smooth-effect"
+                type="search"
+                name="term"
+                placeholder="Search"
+              />
+              <button
+                type="submit"
+                className="absolute right-0 top-0 mt-3 mr-4"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 text-gray-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </button>
+            </form>
+          </div>
+
           {/* <!-- Left links --> */}
         </div>
         {/* <!-- Collapsible wrapper --> */}

@@ -147,3 +147,11 @@ export const listTodos = () => {
 export const updateTodo = (todoID: number, payload: Task_api) => {
   return request(`todos/${todoID}/`, 'PATCH', payload);
 };
+
+export const createTodo = (payload: Task_api) => {
+  return request(`todos/`, 'POST', payload);
+};
+
+export const deleteTodo = (todoID: number) => {
+  return request(`todos/${todoID}/`, 'DELETE');
+};

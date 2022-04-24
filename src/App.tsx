@@ -5,6 +5,7 @@ import Redirect from './Components/Redirect';
 import BoardsView from './Pages/Boards';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
+import SearchView from './Pages/Search';
 import SignUp from './Pages/SignUp';
 import TasksView from './Pages/TasksView';
 import TodoView from './Pages/TodoView';
@@ -66,6 +67,32 @@ function App() {
           />
         ) : (
           <Route path="/" element={<Redirect to="/login" />} />
+        )}
+
+        {isAuthenticated ? (
+          <Route path="search">
+            <Route
+              index
+              element={
+                <NavContainer>
+                  <SearchView />
+                </NavContainer>
+              }
+            />
+            <Route
+              path=":searchTerm/tasks"
+              element={
+                <NavContainer>
+                  <SearchView />
+                </NavContainer>
+              }
+            />
+          </Route>
+        ) : (
+          <Route path="boards">
+            <Route index element={<Redirect to="/login" />} />
+            <Route path=":boardID/tasks" element={<Redirect to="/login" />} />
+          </Route>
         )}
 
         <Route path="login" element={<Login />} />
