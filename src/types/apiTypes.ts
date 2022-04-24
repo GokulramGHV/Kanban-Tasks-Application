@@ -1,32 +1,33 @@
-
 export type Board = {
-  id?:number;
-  created_date?:string;
-  modified_date?:string;
+  id?: number;
+  created_date?: string;
+  modified_date?: string;
   title: string;
   description: string;
-}
+};
 
 export type Task_api = {
-  id?:number;
-  board_object?:Board;
-  status_object?:Status;
+  id?: number;
+  board_object?: Board;
+  status_object?: Status;
   status: number;
-  created_date?:string;
-  modified_date?:string;
+  created_date?: string;
+  modified_date?: string;
   title: string;
   description: string;
   due_date?: string;
   board?: number;
-}
+  priority: string;
+  completed?: Boolean;
+};
 
 export type Status = {
-  id?:number;
-  created_date?:string;
-  modified_date?:string;
+  id?: number;
+  created_date?: string;
+  modified_date?: string;
   title: string;
   description: string;
-}
+};
 
 export type Pagination<T> = {
   count: number;

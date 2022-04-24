@@ -235,7 +235,7 @@ export default function TasksView() {
                           <div className="flex items-center text-xl font-semibold">
                             {task.title}
                             <span className="text-xs bg-indigo-400 px-2 py-1.5 text-white rounded-md scale-90 ml-2">
-                              Low
+                              {task.priority}
                             </span>
                           </div>
                         </div>

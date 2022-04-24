@@ -7,6 +7,7 @@ import Home from './Pages/Home';
 import Login from './Pages/Login';
 import SignUp from './Pages/SignUp';
 import TasksView from './Pages/TasksView';
+import TodoView from './Pages/TodoView';
 // import './App.css';
 
 let isAuthenticated = localStorage.getItem('token') ? true : false;
@@ -54,24 +55,18 @@ function App() {
           </Route>
         )}
 
-        {/* <Route path="boards">
+        {isAuthenticated ? (
           <Route
-            index
+            path="/to-do"
             element={
               <NavContainer>
-                <BoardsView />
+                <TodoView />
               </NavContainer>
             }
           />
-          <Route
-            path=":boardID/tasks"
-            element={
-              <NavContainer>
-                <TasksView />
-              </NavContainer>
-            }
-          />
-        </Route> */}
+        ) : (
+          <Route path="/" element={<Redirect to="/login" />} />
+        )}
 
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<SignUp />} />

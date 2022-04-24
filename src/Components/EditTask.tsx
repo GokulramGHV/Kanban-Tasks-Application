@@ -1,7 +1,7 @@
 // import { navigate } from 'raviger';
 import React, { useState } from 'react';
 import { Status, Task_api } from '../types/apiTypes';
-import { createTask, editTask } from '../utils/apiUtils';
+import { editTask } from '../utils/apiUtils';
 
 export default function EditTask(props: {
   task: Task_api;
@@ -13,6 +13,7 @@ export default function EditTask(props: {
     status: props.task.status_object?.id as number,
     due_date: props.task.due_date,
     board: props.task.board,
+    priority: props.task.priority,
   });
 
   // const [errors, setErrors] = useState<Errors<Form>>({});
@@ -134,6 +135,39 @@ export default function EditTask(props: {
                 {stat.title}
               </option>
             ))}
+          </select>
+        </div>
+
+        <div className="mb-4">
+          <label
+            htmlFor="priority"
+            // className={`${errors.description ? 'text-red-500' : ''}`}
+          >
+            Priority
+          </label>
+
+          <select
+            name="priority"
+            id="priority"
+            className="input-elem w-full"
+            onChange={(e) => {
+              setTaskState({ ...taskState, priority: e.target.value });
+            }}
+            value={taskState.priority}
+          >
+            <option value="" hidden>
+              {' '}
+              --- Select an option ---{' '}
+            </option>
+            <option value="High" key={1}>
+              High
+            </option>
+            <option value="Medium" key={2}>
+              Medium
+            </option>
+            <option value="Low" key={3}>
+              Low
+            </option>
           </select>
         </div>
 

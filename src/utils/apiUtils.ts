@@ -1,6 +1,7 @@
 import { Board, Status, Task_api } from '../types/apiTypes';
 
-const API_BASE_URL = 'https://capstone-301-task-app.herokuapp.com/api/';
+// const API_BASE_URL = 'https://capstone-301-task-app.herokuapp.com/api/';
+const API_BASE_URL = 'http://127.0.0.1:8000/api/';
 
 type RequestMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE' | 'PUT';
 
@@ -137,4 +138,12 @@ export const editStage = (payload: Status, stageID: number) => {
 
 export const deleteStage = (stageID: number) => {
   return request(`status/${stageID}/`, 'DELETE');
+};
+
+export const listTodos = () => {
+  return request('todos/', 'GET');
+};
+
+export const updateTodo = (todoID: number, payload: Task_api) => {
+  return request(`todos/${todoID}/`, 'PATCH', payload);
 };

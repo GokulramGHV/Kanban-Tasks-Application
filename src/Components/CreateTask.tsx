@@ -13,6 +13,7 @@ export default function CreateTask(props: {
     status: 0,
     due_date: '',
     board: props.boardID,
+    priority: '',
   });
 
   // const [errors, setErrors] = useState<Errors<Form>>({});
@@ -129,6 +130,38 @@ export default function CreateTask(props: {
                 {stat.title}
               </option>
             ))}
+          </select>
+        </div>
+
+        <div className="mb-4">
+          <label
+            htmlFor="priority"
+            // className={`${errors.description ? 'text-red-500' : ''}`}
+          >
+            Priority
+          </label>
+
+          <select
+            name="priority"
+            id="priority"
+            className="input-elem w-full"
+            onChange={(e) => {
+              setTaskState({ ...taskState, priority: e.target.value });
+            }}
+          >
+            <option value="" hidden>
+              {' '}
+              --- Select an option ---{' '}
+            </option>
+            <option value="High" key={1}>
+              High
+            </option>
+            <option value="Medium" key={2}>
+              Medium
+            </option>
+            <option value="Low" key={3}>
+              Low
+            </option>
           </select>
         </div>
 
