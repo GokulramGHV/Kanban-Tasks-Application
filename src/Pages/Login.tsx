@@ -39,7 +39,7 @@ export default function Login() {
       progress: undefined,
     });
 
-    const notifySuccess = (message: string) =>
+  const notifySuccess = (message: string) =>
     toast.success(message, {
       position: 'top-center',
       autoClose: 5000,
@@ -50,9 +50,12 @@ export default function Login() {
       progress: undefined,
     });
 
-    useEffect(()=>{
-      if(localStorage.getItem('registered')) notifySuccess("User Registed Successfully!")
-    }, []);
+  useEffect(() => {
+    if (localStorage.getItem('registered')) {
+      notifySuccess('User Registed Successfully!');
+      localStorage.removeItem('registered')
+    }
+  }, []);
 
   return (
     <div className="flex justify-center items-center min-h-screen">
