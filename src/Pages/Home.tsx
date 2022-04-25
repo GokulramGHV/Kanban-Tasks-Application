@@ -144,7 +144,7 @@ export default function Home() {
           {statusState.map((stage) => (
             <div className="mt-7">
               <button
-                className="text-xl font-medium mb-1"
+                className="text-xl font-medium hover:bg-gray-200 py-2 px-3 rounded-lg smooth-effect"
                 onClick={(_) => {
                   setActiveTab(stage.id as number);
                 }}
@@ -152,7 +152,7 @@ export default function Home() {
                 {stage.title}
               </button>
               <div
-                className={`h-1 rounded-full bg-indigo-500 ${
+                className={`m-0 h-1 rounded-full bg-indigo-500 ${
                   activeTab !== stage.id && 'hidden'
                 }`}
               ></div>

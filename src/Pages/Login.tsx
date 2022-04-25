@@ -8,11 +8,13 @@ toast.configure();
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
+      setLoading(true);
       const data = await login(username, password);
       localStorage.setItem('token', data.token);
       localStorage.setItem('loggedin', '1');
@@ -21,6 +23,7 @@ export default function Login() {
 
       console.log(data);
     } catch (error: any) {
+      setLoading(false);
       notifyError(
         'Error while trying to login... Make sure your credentials are right!'
       );
@@ -53,7 +56,7 @@ export default function Login() {
   useEffect(() => {
     if (localStorage.getItem('registered')) {
       notifySuccess('User Registed Successfully!');
-      localStorage.removeItem('registered')
+      localStorage.removeItem('registered');
     }
   }, []);
 
@@ -145,7 +148,16 @@ export default function Login() {
         </div>
 
         <button type="submit" className="btn w-full mt-4">
-          Login
+          {loading ? (
+            <div
+              className="spinner-border animate-spin inline-block w-6 h-6 border-2 rounded-full text-white"
+              role="status"
+            >
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          ) : (
+            'Login'
+          )}
         </button>
 
         <div className="flex text-sm gap-2 mt-3">
