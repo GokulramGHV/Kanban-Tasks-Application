@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
 import { useSearchParams } from 'react-router-dom';
 import { Task_api } from '../types/apiTypes';
 import { fetchTodos } from './TodoView';
 
 export default function SearchView() {
+  // eslint-disable-next-line
   let [searchParams, setSearchParams] = useSearchParams();
   const [tasksState, setTasksState] = useState<Task_api[]>([]);
 
@@ -13,7 +13,7 @@ export default function SearchView() {
   useEffect(() => {
     fetchTodos(setTasksState);
     console.log(searchTerm);
-  }, []);
+  }, [searchTerm]);
 
   return (
     <div className="p-3">

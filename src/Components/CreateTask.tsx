@@ -16,27 +16,18 @@ export default function CreateTask(props: {
     priority: '',
   });
 
-  // const [errors, setErrors] = useState<Errors<Form>>({});
-
-  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = event.target;
-  //   setBoard({ ...board, [name]: value });
-  // };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // const validationErrors = validateForm(form);
-    // setErrors(validationErrors);
-    // if (Object.keys(validationErrors).length === 0) {
-
     try {
       // eslint-disable-next-line
       const data = await createTask(taskState, props.boardID);
-      alert('Task created succesfully!');
+      
       window.location.reload();
     } catch (error) {
-      console.log(error);
-      alert(error);
+      alert(
+        "An error has occured, please make sure you've filled all the fields!"
+      );
     }
     // }
   };
@@ -60,6 +51,7 @@ export default function CreateTask(props: {
               setTaskState({ ...taskState, title: e.target.value });
             }}
             className="flex-1 input-elem w-full"
+            required
           />
           {/* {errors.title && <p className="text-red-500">{errors.title}</p>} */}
         </div>
@@ -80,6 +72,7 @@ export default function CreateTask(props: {
               setTaskState({ ...taskState, description: e.target.value });
             }}
             className="input-elem w-full"
+            required
           />
           {/* {errors.description && (
             <p className="text-red-500">{errors.description}</p>
@@ -102,6 +95,7 @@ export default function CreateTask(props: {
               setTaskState({ ...taskState, due_date: e.target.value });
             }}
             className="input-elem w-full"
+            required
           />
         </div>
 
@@ -120,11 +114,9 @@ export default function CreateTask(props: {
             onChange={(e) => {
               setTaskState({ ...taskState, status: Number(e.target.value) });
             }}
+            required
           >
-            <option value="" hidden>
-              {' '}
-              --- Select an option ---{' '}
-            </option>
+            <option hidden> --- Select an option --- </option>
             {props.statuses.map((stat) => (
               <option value={stat.id} key={stat.id}>
                 {stat.title}
@@ -148,11 +140,9 @@ export default function CreateTask(props: {
             onChange={(e) => {
               setTaskState({ ...taskState, priority: e.target.value });
             }}
+            required
           >
-            <option value="" hidden>
-              {' '}
-              --- Select an option ---{' '}
-            </option>
+            <option hidden> --- Select an option --- </option>
             <option value="High" key={1}>
               High
             </option>
@@ -176,11 +166,12 @@ export default function CreateTask(props: {
             type="number"
             name="order"
             id="order"
-            value={taskState.order}
+            value={String(taskState.order)}
             onChange={(e) => {
               setTaskState({ ...taskState, order: Number(e.target.value) });
             }}
             className="input-elem w-full"
+            required
           />
         </div>
 

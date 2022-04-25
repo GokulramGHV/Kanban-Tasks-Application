@@ -53,7 +53,7 @@ export default function Navbar() {
           className="collapse navbar-collapse flex-grow items-center"
           id="navbarSupportedContent1"
         >
-          <a className="text-xl text-white pr-2 font-semibold" href="#">
+          <a className="text-xl text-white pr-2 font-semibold" href='/'>
             Task App
           </a>
           {/* <!-- Left links --> */}
@@ -97,7 +97,7 @@ export default function Navbar() {
           <div className="dropdown relative">
             <a
               className="dropdown-toggle flex items-center hidden-arrow"
-              href="#"
+              href="#dropdown"
               id="dropdownMenuButton2"
               role="button"
               data-bs-toggle="dropdown"

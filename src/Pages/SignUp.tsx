@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { registerUser } from '../utils/apiUtils';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -16,6 +18,17 @@ export default function SignUp() {
     setState({ ...state, [name]: value });
   };
 
+  const notifyError = (message: string) =>
+    toast.error(message, {
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
@@ -23,11 +36,12 @@ export default function SignUp() {
       // localStorage.setItem('token', data.token);
       // window.location.reload();
       // navigate('/');
-      alert('User Registered Succesfully!');
+      localStorage.setItem('registered', '1')
       console.log(data);
       navigate('/login');
     } catch (error: any) {
       // setErrors(error.non_field_errors);
+      notifyError("An error occured while trying to create an account! Please try again...")
       console.log(error);
     }
   };

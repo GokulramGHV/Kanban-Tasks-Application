@@ -1,26 +1,58 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { login, me } from '../utils/apiUtils';
+import { login } from '../utils/apiUtils';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure();
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  
+
   const navigate = useNavigate();
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       const data = await login(username, password);
       localStorage.setItem('token', data.token);
+      localStorage.setItem('loggedin', '1');
       navigate('/');
       window.location.reload();
 
       console.log(data);
     } catch (error: any) {
-      // setErrors(error.non_field_errors);
+      notifyError(
+        'Error while trying to login... Make sure your credentials are right!'
+      );
       console.log(error);
     }
   };
+
+  const notifyError = (message: string) =>
+    toast.error(message, {
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+    const notifySuccess = (message: string) =>
+    toast.success(message, {
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+    useEffect(()=>{
+      if(localStorage.getItem('registered')) notifySuccess("User Registed Successfully!")
+    }, []);
 
   return (
     <div className="flex justify-center items-center min-h-screen">

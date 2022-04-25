@@ -5,6 +5,8 @@ import 'tw-elements';
 import { listStatus, listTodos, me } from '../utils/apiUtils';
 import { Pagination, Status, Task_api } from '../types/apiTypes';
 import ModalSpinner from '../Components/SpinnerModal';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const fetchStatus = async (
   setStatusState: React.Dispatch<React.SetStateAction<Status[]>>,
@@ -73,11 +75,25 @@ export default function Home() {
   const [tasksState, setTasksState] = useState<Task_api[]>([]);
   const [activeTab, setActiveTab] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const notifySuccess = (message: string) =>
+    toast.success(message, {
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   useEffect(() => {
     getName(setUsername, setIsLoading);
     fetchStatus(setStatusState, setActiveTab, setIsLoading);
     fetchTasks(setTasksState, setCount, setIsLoading);
+    if (localStorage.getItem('loggedin')) {
+      notifySuccess('Logged In Successfully!');
+      localStorage.removeItem('loggedin');
+    }
   }, []);
 
   return (

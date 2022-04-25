@@ -24,12 +24,13 @@ export default function CreateBoard() {
     // if (Object.keys(validationErrors).length === 0) {
 
     try {
+      // eslint-disable-next-line
       const data = await createBoard(board);
       alert('Board created succesfully!');
       window.location.reload();
     } catch (error) {
       console.log(error);
-      alert(error);
+      alert("Error while creating a board... make sure you've filled all the fields!");
     }
     // }
   };
@@ -53,6 +54,7 @@ export default function CreateBoard() {
               setBoard({ ...board, title: e.target.value });
             }}
             className="flex-1 input-elem w-full"
+            required
           />
           {/* {errors.title && <p className="text-red-500">{errors.title}</p>} */}
         </div>
@@ -73,6 +75,7 @@ export default function CreateBoard() {
               setBoard({ ...board, description: e.target.value });
             }}
             className="input-elem w-full"
+            required
           />
           {/* {errors.description && (
             <p className="text-red-500">{errors.description}</p>

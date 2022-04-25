@@ -17,6 +17,8 @@ export default function EditTask(props: {
     order: props.task.order,
   });
 
+  
+
   // const [errors, setErrors] = useState<Errors<Form>>({});
 
   // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +43,7 @@ export default function EditTask(props: {
       window.location.reload();
     } catch (error) {
       console.log(error);
-      alert(error);
+      alert(" An error has occured while editing a task... make sure you've filled all the fields!");
     }
     // }
   };
@@ -65,6 +67,7 @@ export default function EditTask(props: {
               setTaskState({ ...taskState, title: e.target.value });
             }}
             className="flex-1 input-elem w-full"
+            required
           />
           {/* {errors.title && <p className="text-red-500">{errors.title}</p>} */}
         </div>
@@ -85,6 +88,7 @@ export default function EditTask(props: {
               setTaskState({ ...taskState, description: e.target.value });
             }}
             className="input-elem w-full"
+            required
           />
           {/* {errors.description && (
             <p className="text-red-500">{errors.description}</p>
@@ -107,6 +111,7 @@ export default function EditTask(props: {
               setTaskState({ ...taskState, due_date: e.target.value });
             }}
             className="input-elem w-full"
+            required
           />
         </div>
 
@@ -126,6 +131,7 @@ export default function EditTask(props: {
               setTaskState({ ...taskState, status: Number(e.target.value) });
             }}
             value={taskState.status}
+            required
           >
             <option value="" hidden>
               {' '}
@@ -155,6 +161,7 @@ export default function EditTask(props: {
               setTaskState({ ...taskState, priority: e.target.value });
             }}
             value={taskState.priority}
+            required
           >
             <option value="" hidden>
               {' '}
@@ -188,6 +195,7 @@ export default function EditTask(props: {
               setTaskState({ ...taskState, order: Number(e.target.value) });
             }}
             className="input-elem w-full"
+            required
           />
         </div>
 

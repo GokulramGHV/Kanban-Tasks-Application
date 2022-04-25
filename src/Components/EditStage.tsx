@@ -15,10 +15,10 @@ export default function EditStage(props: {
 
   // const [errors, setErrors] = useState<Errors<Form>>({});
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setStage({ ...stage, [name]: value });
-  };
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = event.target;
+  //   setStage({ ...stage, [name]: value });
+  // };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -27,12 +27,13 @@ export default function EditStage(props: {
     // if (Object.keys(validationErrors).length === 0) {
 
     try {
+      // eslint-disable-next-line
       const data = await editStage(stage, props.stageID);
       alert('Stage edited succesfully!');
       window.location.reload();
     } catch (error) {
       console.log(error);
-      alert(error);
+      alert("Error while editing a stage... make sure you've filled all the fields!");
     }
     // }
   };
@@ -60,6 +61,7 @@ export default function EditStage(props: {
               setStage({ ...stage, title: e.target.value });
             }}
             className="flex-1 input-elem w-full"
+            required
           />
           {/* {errors.title && <p className="text-red-500">{errors.title}</p>} */}
         </div>
@@ -80,6 +82,7 @@ export default function EditStage(props: {
               setStage({ ...stage, description: e.target.value });
             }}
             className="input-elem w-full"
+            required
           />
           {/* {errors.description && (
             <p className="text-red-500">{errors.description}</p>

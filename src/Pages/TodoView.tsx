@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import CreateTodo from '../Components/CreateTodo';
-import EditTask from '../Components/EditTask';
 import EditTodo from '../Components/EditTodo';
 import Modal from '../Components/Modal';
 import { Pagination, Task_api } from '../types/apiTypes';
@@ -19,6 +18,7 @@ export const fetchTodos = async (
 
 const UpdateTodos = async (todoID: number, todo: Task_api) => {
   try {
+    // eslint-disable-next-line
     const data = await updateTodo(todoID, todo);
   } catch (error) {
     console.log(error);

@@ -83,11 +83,17 @@ const removeStage = async (stageID: number) => {
 };
 
 const ChangeTask = async (task: Task_api) => {
-  try {
-    const data = await editTask(task, task.board as number, task.id as number);
-  } catch (error) {
-    console.log(error);
-  }
+  if (task.id)
+    try {
+      // eslint-disable-next-line
+      const data = await editTask(
+        task,
+        task.board as number,
+        task.id as number
+      );
+    } catch (error) {
+      console.log(error);
+    }
 };
 
 export default function TasksView() {

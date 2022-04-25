@@ -1,7 +1,7 @@
 // import { navigate } from 'raviger';
 import React, { useState } from 'react';
 // import { Navigate } from 'react-router-dom';
-import { Board, Status } from '../types/apiTypes';
+import { Status } from '../types/apiTypes';
 import { createStage } from '../utils/apiUtils';
 
 export default function CreateStage() {
@@ -24,12 +24,13 @@ export default function CreateStage() {
     // if (Object.keys(validationErrors).length === 0) {
 
     try {
+      // eslint-disable-next-line
       const data = await createStage(stage);
       alert('Stage created succesfully!');
       window.location.reload();
     } catch (error) {
       console.log(error);
-      alert(error);
+      alert(" An error has occured while creating a stage... make sure you've filled all the fields!");
     }
     // }
   };
@@ -53,6 +54,7 @@ export default function CreateStage() {
               setStage({ ...stage, title: e.target.value });
             }}
             className="flex-1 input-elem w-full"
+            required
           />
           {/* {errors.title && <p className="text-red-500">{errors.title}</p>} */}
         </div>
@@ -73,6 +75,7 @@ export default function CreateStage() {
               setStage({ ...stage, description: e.target.value });
             }}
             className="input-elem w-full"
+            required
           />
           {/* {errors.description && (
             <p className="text-red-500">{errors.description}</p>

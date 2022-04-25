@@ -63,7 +63,9 @@ export default function CreateTodo() {
       window.location.reload();
     } catch (error) {
       console.log(error);
-      alert(error);
+      alert(
+        " An error has occured while trying to create a task... make sure you've filled all the fields!"
+      );
     }
     // }
   };
@@ -87,6 +89,7 @@ export default function CreateTodo() {
               setTaskState({ ...taskState, title: e.target.value });
             }}
             className="flex-1 input-elem w-full"
+            required
           />
           {/* {errors.title && <p className="text-red-500">{errors.title}</p>} */}
         </div>
@@ -107,6 +110,7 @@ export default function CreateTodo() {
               setTaskState({ ...taskState, description: e.target.value });
             }}
             className="input-elem w-full"
+            required
           />
           {/* {errors.description && (
             <p className="text-red-500">{errors.description}</p>
@@ -129,6 +133,7 @@ export default function CreateTodo() {
               setTaskState({ ...taskState, due_date: e.target.value });
             }}
             className="input-elem w-full"
+            required
           />
         </div>
 
@@ -147,6 +152,7 @@ export default function CreateTodo() {
             onChange={(e) => {
               setTaskState({ ...taskState, board: Number(e.target.value) });
             }}
+            required
           >
             <option value="" hidden>
               {' '}
@@ -175,6 +181,7 @@ export default function CreateTodo() {
             onChange={(e) => {
               setTaskState({ ...taskState, status: Number(e.target.value) });
             }}
+            required
           >
             <option value="" hidden>
               {' '}
@@ -203,6 +210,7 @@ export default function CreateTodo() {
             onChange={(e) => {
               setTaskState({ ...taskState, priority: e.target.value });
             }}
+            required
           >
             <option value="" hidden>
               {' '}

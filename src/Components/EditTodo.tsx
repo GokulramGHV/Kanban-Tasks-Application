@@ -63,7 +63,9 @@ export default function EditTodo(props: { task: Task_api }) {
       window.location.reload();
     } catch (error) {
       console.log(error);
-      alert(error);
+      alert(
+        " An error has occured while trying edit a task... make sure you've filled all the fields!"
+      );
     }
     // }
   };
@@ -87,6 +89,7 @@ export default function EditTodo(props: { task: Task_api }) {
               setTaskState({ ...taskState, title: e.target.value });
             }}
             className="flex-1 input-elem w-full"
+            required
           />
           {/* {errors.title && <p className="text-red-500">{errors.title}</p>} */}
         </div>
@@ -107,6 +110,7 @@ export default function EditTodo(props: { task: Task_api }) {
               setTaskState({ ...taskState, description: e.target.value });
             }}
             className="input-elem w-full"
+            required
           />
           {/* {errors.description && (
             <p className="text-red-500">{errors.description}</p>
@@ -129,6 +133,7 @@ export default function EditTodo(props: { task: Task_api }) {
               setTaskState({ ...taskState, due_date: e.target.value });
             }}
             className="input-elem w-full"
+            required
           />
         </div>
 
@@ -148,6 +153,7 @@ export default function EditTodo(props: { task: Task_api }) {
               setTaskState({ ...taskState, board: Number(e.target.value) });
             }}
             value={taskState.board}
+            required
           >
             <option value="" hidden>
               {' '}
@@ -177,6 +183,7 @@ export default function EditTodo(props: { task: Task_api }) {
               setTaskState({ ...taskState, status: Number(e.target.value) });
             }}
             value={taskState.status}
+            required
           >
             <option value="" hidden>
               {' '}
@@ -206,6 +213,7 @@ export default function EditTodo(props: { task: Task_api }) {
               setTaskState({ ...taskState, priority: e.target.value });
             }}
             value={taskState.priority}
+            required
           >
             <option value="" hidden>
               {' '}
