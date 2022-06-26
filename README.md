@@ -1,6 +1,11 @@
 # Kanban Task Manager
 You can check out the app here https://taskapp-301.netlify.app/
 
+## Screenshots
+![image](https://user-images.githubusercontent.com/40627011/175811986-2d4bf367-ce2f-4aa8-949b-312a4c83150d.png)
+![image](https://user-images.githubusercontent.com/40627011/175811995-c94f3cad-2821-458f-983d-adfb45f0ef7a.png)
+![image](https://user-images.githubusercontent.com/40627011/175812010-d9656c85-3ebc-4b39-945e-2a26c4e4b20a.png)
+
 
 ## Getting Started with Create React App
 
